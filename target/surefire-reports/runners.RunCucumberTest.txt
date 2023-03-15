@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: runners.RunCucumberTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.455 sec <<< FAILURE!
+Opening the application w/ cucumber(Login page works)  Time elapsed: 0.1 sec  <<< ERROR!
+io.cucumber.junit.UndefinedStepException: The step 'I open the iOS application' and 1 other step(s) are undefined.
+You can implement these steps using the snippet(s) below:
+
+@Given("I open the iOS application")
+public void i_open_the_i_os_application() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("I should see the home page")
+public void i_should_see_the_home_page() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+
