@@ -7,8 +7,10 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        glue ="stepdefs",
-        features = "src/test/resources")
+        glue = "app.stepdefs",
+        features = "src/test/resources",
+        monochrome = true
+)
 
 public class RunCucumberTest {
 }
