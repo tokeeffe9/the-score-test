@@ -23,6 +23,9 @@ public class DriverFactory {
         androidCapabilities.setCapability("platformName", "Android");
         androidCapabilities.setCapability("appium:deviceOrientation", "portrait");
         androidCapabilities.setCapability("appium:platformVersion", "12.0");
+        androidCapabilities.setCapability("appium:automationName", "UiAutomator2");
+        androidCapabilities.setCapability("autoDismissAlerts", true);
+        androidCapabilities.setCapability("gpsEnabled", true);
 
         if (local) {
 
@@ -34,7 +37,6 @@ public class DriverFactory {
         } else {
             //Setting up capabilities
             androidCapabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
-            androidCapabilities.setCapability("appium:automationName", "UiAutomator2");
             androidCapabilities.setCapability("appium:app", "storage:filename=theScore_23.3.0_apkcombo.com.apk");
 
             //Setting up sauceLabsOptions

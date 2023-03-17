@@ -1,4 +1,5 @@
 package utils;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -23,6 +24,6 @@ public class ConfigReader {
     }
 
     public static Boolean getBooleanProperty(String key) {
-       return Boolean.parseBoolean(ConfigReader.getProperty(key));
+        return Boolean.parseBoolean(ConfigReader.getProperty(key));
     }
 }
