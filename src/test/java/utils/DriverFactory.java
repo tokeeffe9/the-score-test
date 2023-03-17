@@ -37,9 +37,9 @@ public class DriverFactory {
 
             driver = new AndroidDriver(new URL(ConfigReader.getProperty("local.appium.server")), androidCapabilities);
         } else {
-            androidCapabilities.setCapability("appium:app", "storage:" + APP_FILE_NAME);
+            androidCapabilities.setCapability("appium:app", "storage:filename=" + APP_FILE_NAME);
 
-            //Setting up specfic capabilities when using saucelabs
+            //Setting up specific capabilities when using SauceLabs
             MutableCapabilities sauceLabsOptions = new MutableCapabilities();
 
             sauceLabsOptions.setCapability("build", "appium-build-score-test");
@@ -47,8 +47,7 @@ public class DriverFactory {
             sauceLabsOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
             sauceLabsOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
             androidCapabilities.setCapability("sauce:options", sauceLabsOptions);
-
-            driver = new AndroidDriver(new URL("https://ondemand.saucelabs.com:443/wd/hub/"), androidCapabilities);
+            driver = new AndroidDriver(new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub"), androidCapabilities);
         }
         return driver;
     }
