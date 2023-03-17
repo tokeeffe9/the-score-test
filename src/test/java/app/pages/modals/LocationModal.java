@@ -10,12 +10,17 @@ public class LocationModal extends BasePage {
     @AndroidFindBy(id = "com.fivemobile.thescore:id/btn_disallow")
     protected WebElement laterID;
 
+    @AndroidFindBy(id = "com.fivemobile.thescore:id/img_location")
+    protected WebElement locationImgID;
+
     public LocationModal(AppiumDriver driver) {
         super(driver);
     }
 
     public void tapMaybeLater() {
-        waitUntilVisible(laterID).click();
+
+        waitUntilVisible(locationImgID);
+        waitUntilClickable(laterID).click();
     }
 
 }

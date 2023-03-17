@@ -1,6 +1,7 @@
 package app.pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ConfigReader;
 
 import java.time.Duration;
 import java.util.List;
@@ -27,7 +29,7 @@ public abstract class BasePage {
     }
 
     private WebDriverWait driverWait() {
-        return new WebDriverWait(driver, Duration.ofSeconds(10));
+        return new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getIntProperty("driver.wait.timeout")));
     }
 
     protected WebElement waitUntilVisible(WebElement element) {
@@ -58,6 +60,12 @@ public abstract class BasePage {
         //Gets the center of those co-ordinates based on the X and taps
         TouchAction touchAction = new TouchAction((PerformsTouchActions) driver);
         touchAction.tap(PointOption.point(startX + (endX - startX) / 2, centerY)).release().perform();
+    }
+
+    protected void swipeIntoViewHorizontal(String recycleContainer, String elementText) {
+        driver.findElement(MobileBy
+                .AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"" + recycleContainer + "\")).setAsHorizontalList().scrollIntoView("
+                        + "new UiSelector().text(\"" + elementText + "\"));"));
     }
 
 }

@@ -9,12 +9,17 @@ public class TheScoreBetModal extends BasePage {
     @AndroidFindBy(id = "com.fivemobile.thescore:id/dismiss_modal")
     protected WebElement dismissElement;
 
+    @AndroidFindBy(id = "com.fivemobile.thescore:id/canada_maple_leaf")
+    protected WebElement mapleLeafImageID;
+
     public TheScoreBetModal(AppiumDriver driver) {
         super(driver);
     }
 
     public void tapDismiss() {
-        waitUntilVisible(dismissElement).click();
+
+        waitUntilVisible(mapleLeafImageID);
+        waitUntilClickable(dismissElement).click();
     }
 
 }

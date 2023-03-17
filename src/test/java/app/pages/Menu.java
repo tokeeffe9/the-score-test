@@ -14,6 +14,8 @@ public class Menu extends BasePage {
     }
 
     public void tapFavorites() {
+
+        waitUntilVisible(favoritesAccessibility);
         waitUntilClickable(favoritesAccessibility).click();
     }
 

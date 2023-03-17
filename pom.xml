@@ -1,40 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
     <artifactId>the-score-test</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <io.cucumber.version>7.1.0</io.cucumber.version>
+        <org.selenium.version>4.1.0</org.selenium.version>
+        <io.appium.version>8.3.0</io.appium.version>
+        <org.apache.maven.version>3.0.0-M5</org.apache.maven.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--Specify the tests and device you want to run when using your IDE-->
+        <tags>@backNavigation</tags>
+        <appFileName>theScore_23.3.0_apkcombo.com.apk</appFileName>
+        <deviceName>pixel_6_pro</deviceName>
+        <androidVersion>12.0</androidVersion>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>8.3.0</version>
+            <version>${io.appium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.8.1</version>
+            <version>${org.selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.11.1</version>
+            <version>${io.cucumber.version}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.11.1</version>
+            <version>${io.cucumber.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${org.apache.maven.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/RunCucumberTest.java</include>
+                    </includes>
+                    <systemPropertyVariables>
+                        <app.file.name>${appFileName}</app.file.name>
+                        <device.name>${deviceName}</device.name>
+                        <android.version>${androidVersion}</android.version>
+                        <cucumber.filter.tags>${tags}</cucumber.filter.tags>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

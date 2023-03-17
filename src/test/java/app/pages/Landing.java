@@ -38,7 +38,7 @@ public class Landing extends BasePage {
     }
 
     public void tapLogInButton() {
-        logInButtonID.click();
+        waitUntilClickable(logInButtonID).click();
     }
 
 }

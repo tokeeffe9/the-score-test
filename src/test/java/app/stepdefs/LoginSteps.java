@@ -52,6 +52,6 @@ public class LoginSteps extends DriverFactory {
                 }
             }
             limit++;
-        } while ((!betModalClicked || !locationModalClicked) && limit <= 2);
+        } while ((!betModalClicked || !locationModalClicked) && limit <= 3);
     }
 }
