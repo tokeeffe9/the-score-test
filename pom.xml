@@ -21,7 +21,7 @@
         <!--Specify the tests and device you want to run when using your IDE-->
         <tags>@backNavigation</tags>
         <appFileName>theScore_23.3.0_apkcombo.com.apk</appFileName>
-        <deviceName>pixel_6_pro</deviceName>
+        <deviceName>pixel_6</deviceName>
         <androidVersion>12.0</androidVersion>
     </properties>
 
@@ -30,6 +30,16 @@
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>${io.appium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.6</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -53,8 +63,20 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${org.apache.maven.version}</version>
+                <version>3.0.0-M5</version>
                 <configuration>
                     <includes>
                         <include>**/RunCucumberTest.java</include>

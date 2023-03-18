@@ -10,16 +10,18 @@ import java.net.URL;
 public class DriverFactory {
 
     private static final String LOCAL_APK_PATH = System.getProperty("user.home") + "/Desktop/" + System.getProperty("app.file.name");
-
     public static final String DEVICE_NAME = System.getProperty("device.name");
-
     public static final String ANDROID_VERSION = System.getProperty("android.version");
-
     public static final String APP_FILE_NAME = System.getProperty("app.file.name");
+    public static final String TEST_NAME = System.getProperty("cucumber.filter.tags");
+    public static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
+    public static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+
 
     protected static AppiumDriver driver;
 
     public AppiumDriver getDriver() throws MalformedURLException {
+
 
         Boolean local = ConfigReader.getBooleanProperty("local");
 
@@ -42,11 +44,13 @@ public class DriverFactory {
             //Setting up specific capabilities when using SauceLabs
             MutableCapabilities sauceLabsOptions = new MutableCapabilities();
 
-            sauceLabsOptions.setCapability("build", "appium-build-score-test");
-            sauceLabsOptions.setCapability("name", "Score-test");
-            sauceLabsOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
-            sauceLabsOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+            sauceLabsOptions.setCapability("appiumVersion", "1.22.3");
+            sauceLabsOptions.setCapability("build", "Saucelabs build");
+            sauceLabsOptions.setCapability("name", TEST_NAME);
+            sauceLabsOptions.setCapability("username", SAUCE_USERNAME);
+            sauceLabsOptions.setCapability("accessKey", SAUCE_ACCESS_KEY);
             androidCapabilities.setCapability("sauce:options", sauceLabsOptions);
+
             driver = new AndroidDriver(new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub"), androidCapabilities);
         }
         return driver;

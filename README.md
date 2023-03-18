@@ -21,11 +21,17 @@ To install and run the project, follow these steps:
 
 ## Configuration
 
+As I am using @Slf4j, please make sure to enable annotation processing in your IDE and install the Lombok plugin
+
 Before running the tests, make sure to configure the `config.properties` file with the following information:
 
 - `local`: a boolean flag which indicates whether you are running the tests locally or remotely.
 - `local.appium.server`: the Appium server endpoint for local testing.
 - `driver.wait.timeout`: the maximum amount of time to wait for a WebDriver action to complete.
+- 
+  Local tests can be run on emulator and local hardware. User will need to have adb and their device properly setup for this. Update the deviceName to your device serial number. You can get this by running in your command prompt
+
+```adb devices```
 
 Before running the tests on saucelabs, you'll need to set the following environment variables:
 
